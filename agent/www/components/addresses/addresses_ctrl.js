@@ -127,6 +127,7 @@ angular.module('patternfly.toolbars').controller('ViewCtrl', ['$scope', '$timeou
         }
 
         var on_update = function (reason) {
+          $scope.items = address_service.get_addresses();
           if ($scope.filterConfig) {
             $scope.filterConfig.resultsCount = $scope.items.length;
           }
@@ -165,43 +166,27 @@ angular.module('patternfly.toolbars').controller('ViewCtrl', ['$scope', '$timeou
         };
 
         $scope.filtersText = '';
-        $scope.items = address_service.addresses;
+        $scope.items = address_service.get_addresses();
         on_update("address")
 
         var matchesFilter = function (item, filter) {
-          var match = true;
-
-          if (filter.id === 'address') {
-              match = item.address.match(filter.value) !== null;
-          } else if (filter.id === 'type') {
-              match = item.type.match(filter.value) !== null;
-          }
-          return match;
+            if (filter.id === 'address') {
+                return item.address.match(filter.value) !== null;
+            } else if (filter.id === 'type') {
+                return item.type.match(filter.value) !== null;
+            } else {
+                return true;
+            }
         };
 
         var matchesFilters = function (item, filters) {
-          var matches = true;
-
-          filters.forEach(function(filter) {
-            if (!matchesFilter(item, filter)) {
-              matches = false;
-              return false;
-            }
-          });
-          return matches;
+            return !filters || filters.every(matchesFilter.bind(null, item));
         };
 
         var applyFilters = function (filters) {
-          $scope.items = [];
-          if (filters && filters.length > 0) {
-            address_service.addresses.forEach(function (item) {
-              if (matchesFilters(item, filters)) {
-                $scope.items.push(item);
-              }
+            $scope.items = address_service.get_addresses(function (item) {
+                    return matchesFilters(item, filters);
             });
-          } else {
-            $scope.items = address_service.addresses;
-          }
         };
 
         var filterChange = function (filters) {
