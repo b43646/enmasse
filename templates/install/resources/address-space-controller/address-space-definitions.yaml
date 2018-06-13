@@ -91,8 +91,6 @@ data:
             - env:
               - name: LINK_CAPACITY
                 value: ${ROUTER_LINK_CAPACITY}
-              - name: ALLOW_DURABLE_SUBSCRIPTIONS
-                value: ${ALLOW_DURABLE_SUBSCRIPTIONS}
               - name: AUTHENTICATION_SERVICE_HOST
                 value: ${AUTHENTICATION_SERVICE_HOST}
               - name: AUTHENTICATION_SERVICE_PORT
@@ -103,7 +101,7 @@ data:
                 value: ${AUTHENTICATION_SERVICE_SASL_INIT_HOST}
               - name: AUTHENTICATION_SERVICE_OAUTH_URL
                 value: ${AUTHENTICATION_SERVICE_OAUTH_URL}
-              image: docker.io/enmasseproject/router:latest
+              image: docker.io/gordons/router:latest
               livenessProbe:
                 initialDelaySeconds: 60
                 tcpSocket:
@@ -139,7 +137,7 @@ data:
                 value: '55671'
               - name: CERT_DIR
                 value: /etc/enmasse-certs
-              image: docker.io/enmasseproject/router-metrics:latest
+              image: docker.io/gordons/router-metrics:latest
               livenessProbe:
                 initialDelaySeconds: 60
                 tcpSocket:
@@ -226,7 +224,7 @@ data:
                 value: ${AUTHENTICATION_SERVICE_SASL_INIT_HOST}
               - name: MESSAGING_SECRET
                 value: ${MESSAGING_SECRET}
-              image: docker.io/enmasseproject/standard-controller:latest
+              image: docker.io/gordons/standard-controller:latest
               livenessProbe:
                 httpGet:
                   path: /health
@@ -699,8 +697,6 @@ data:
                       value: ${ADDRESS}
                     - name: LINK_CAPACITY
                       value: ${ROUTER_LINK_CAPACITY}
-                    - name: ALLOW_DURABLE_SUBSCRIPTIONS
-                      value: ${ALLOW_DURABLE_SUBSCRIPTIONS}
                     - name: AUTHENTICATION_SERVICE_HOST
                       value: ${AUTHENTICATION_SERVICE_HOST}
                     - name: AUTHENTICATION_SERVICE_PORT
@@ -711,7 +707,7 @@ data:
                       value: ${AUTHENTICATION_SERVICE_SASL_INIT_HOST}
                     - name: AUTHENTICATION_SERVICE_OAUTH_URL
                       value: ${AUTHENTICATION_SERVICE_OAUTH_URL}
-                    image: docker.io/enmasseproject/router:latest
+                    image: docker.io/gordons/router:latest
                     livenessProbe:
                       initialDelaySeconds: 60
                       tcpSocket:
@@ -752,7 +748,7 @@ data:
                       value: ${NAME}
                     - name: CERT_DIR
                       value: /etc/enmasse-certs
-                    image: docker.io/enmasseproject/topic-forwarder:latest
+                    image: docker.io/gordons/topic-forwarder:latest
                     livenessProbe:
                       httpGet:
                         path: /health
@@ -847,9 +843,6 @@ data:
     - description: The link capacity setting for router
       name: ROUTER_LINK_CAPACITY
       value: '50'
-    - description: Whether AMQP based durable subscriptions to topics are allowed
-      name: ALLOW_DURABLE_SUBSCRIPTIONS
-      value: 'true'
     - description: The hostname to use for the exposed route for messaging
       name: MESSAGING_HOSTNAME
     - description: The hostname to use for the exposed route for MQTT
@@ -1003,8 +996,6 @@ data:
             - env:
               - name: LINK_CAPACITY
                 value: ${ROUTER_LINK_CAPACITY}
-              - name: ALLOW_DURABLE_SUBSCRIPTIONS
-                value: ${ALLOW_DURABLE_SUBSCRIPTIONS}
               - name: AUTHENTICATION_SERVICE_HOST
                 value: ${AUTHENTICATION_SERVICE_HOST}
               - name: AUTHENTICATION_SERVICE_PORT
@@ -1015,7 +1006,7 @@ data:
                 value: ${AUTHENTICATION_SERVICE_SASL_INIT_HOST}
               - name: AUTHENTICATION_SERVICE_OAUTH_URL
                 value: ${AUTHENTICATION_SERVICE_OAUTH_URL}
-              image: docker.io/enmasseproject/router:latest
+              image: docker.io/gordons/router:latest
               livenessProbe:
                 initialDelaySeconds: 60
                 tcpSocket:
@@ -1051,7 +1042,7 @@ data:
                 value: '55671'
               - name: CERT_DIR
                 value: /etc/enmasse-certs
-              image: docker.io/enmasseproject/router-metrics:latest
+              image: docker.io/gordons/router-metrics:latest
               livenessProbe:
                 initialDelaySeconds: 60
                 tcpSocket:
@@ -1138,7 +1129,7 @@ data:
                 value: ${AUTHENTICATION_SERVICE_SASL_INIT_HOST}
               - name: MESSAGING_SECRET
                 value: ${MESSAGING_SECRET}
-              image: docker.io/enmasseproject/standard-controller:latest
+              image: docker.io/gordons/standard-controller:latest
               livenessProbe:
                 httpGet:
                   path: /health
@@ -1611,8 +1602,6 @@ data:
                       value: ${ADDRESS}
                     - name: LINK_CAPACITY
                       value: ${ROUTER_LINK_CAPACITY}
-                    - name: ALLOW_DURABLE_SUBSCRIPTIONS
-                      value: ${ALLOW_DURABLE_SUBSCRIPTIONS}
                     - name: AUTHENTICATION_SERVICE_HOST
                       value: ${AUTHENTICATION_SERVICE_HOST}
                     - name: AUTHENTICATION_SERVICE_PORT
@@ -1623,7 +1612,7 @@ data:
                       value: ${AUTHENTICATION_SERVICE_SASL_INIT_HOST}
                     - name: AUTHENTICATION_SERVICE_OAUTH_URL
                       value: ${AUTHENTICATION_SERVICE_OAUTH_URL}
-                    image: docker.io/enmasseproject/router:latest
+                    image: docker.io/gordons/router:latest
                     livenessProbe:
                       initialDelaySeconds: 60
                       tcpSocket:
@@ -1664,7 +1653,7 @@ data:
                       value: ${NAME}
                     - name: CERT_DIR
                       value: /etc/enmasse-certs
-                    image: docker.io/enmasseproject/topic-forwarder:latest
+                    image: docker.io/gordons/topic-forwarder:latest
                     livenessProbe:
                       httpGet:
                         path: /health
@@ -1854,7 +1843,7 @@ data:
                 value: /etc/mqtt-gateway/ssl/tls.crt
               - name: ENMASSE_MQTT_LISTENPORT
                 value: '8883'
-              image: docker.io/enmasseproject/mqtt-gateway:latest
+              image: docker.io/gordons/mqtt-gateway:latest
               livenessProbe:
                 initialDelaySeconds: 60
                 tcpSocket:
@@ -1868,7 +1857,7 @@ data:
               - mountPath: /etc/mqtt-gateway/ssl
                 name: ssl-certs
                 readOnly: true
-            - image: docker.io/enmasseproject/mqtt-gateway:latest
+            - image: docker.io/gordons/mqtt-gateway:latest
               livenessProbe:
                 initialDelaySeconds: 60
                 tcpSocket:
@@ -1910,7 +1899,7 @@ data:
                 value: $(MESSAGING_SERVICE_PORT_AMQPS_NORMAL)
               - name: MESSAGING_SERVICE_ROUTE_CONTAINER_PORT
                 value: $(MESSAGING_SERVICE_PORT_AMQPS_BROKER)
-              image: docker.io/enmasseproject/mqtt-lwt:latest
+              image: docker.io/gordons/mqtt-lwt:latest
               name: mqtt-lwt
               volumeMounts:
               - mountPath: /etc/enmasse-certs
@@ -1924,9 +1913,6 @@ data:
     - description: The link capacity setting for router
       name: ROUTER_LINK_CAPACITY
       value: '50'
-    - description: Whether AMQP based durable subscriptions to topics are allowed
-      name: ALLOW_DURABLE_SUBSCRIPTIONS
-      value: 'true'
     - description: The hostname to use for the exposed route for messaging
       name: MESSAGING_HOSTNAME
     - description: The hostname to use for the exposed route for MQTT
