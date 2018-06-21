@@ -93,6 +93,7 @@ data:
             port: 5672
             saslPlugin: auth_service
             linkCapacity: ${ROUTER_LINK_CAPACITY}
+            authenticatePeer: yes
           }
 
           listener {
@@ -102,6 +103,15 @@ data:
             authenticatePeer: yes
             sslProfile: inter_router_tls
             saslMechanisms: EXTERNAL
+          }
+
+          listener {
+            host: 0.0.0.0
+            port: 8443
+            saslPlugin: auth_service
+            sslProfile: ssl_details
+            http: true
+            authenticatePeer: yes
           }
 
           sslProfile {
@@ -116,6 +126,7 @@ data:
             saslPlugin: auth_service
             sslProfile: ssl_details
             requireSsl: true
+            authenticatePeer: yes
           }
 
           sslProfile {
@@ -212,8 +223,8 @@ data:
                 value: "/etc/qpid-dispatch/config/qdrouterd.conf"
               - name: QDROUTERD_AUTO_MESH_DISCOVERY
                 value: "INFER"
-              - name: APPLICATION_NAME
-                value: "qdrouterd"
+              - name: QDROUTERD_AUTO_MESH_SERVICE_NAME
+                value: "qdrouterd-headless"
               image: docker.io/enmasseproject/router:latest
               livenessProbe:
                 initialDelaySeconds: 60
@@ -885,8 +896,8 @@ data:
                       value: "/etc/qpid-dispatch/config/qdrouterd.conf:/etc/qpid-dispatch/additional-config/colocated-topic.conf"
                     - name: QDROUTERD_AUTO_MESH_DISCOVERY
                       value: "INFER"
-                    - name: APPLICATION_NAME
-                      value: "qdrouterd"
+                    - name: QDROUTERD_AUTO_MESH_SERVICE_NAME
+                      value: "qdrouterd-headless"
                     image: docker.io/enmasseproject/router:latest
                     livenessProbe:
                       initialDelaySeconds: 60
@@ -1194,6 +1205,7 @@ data:
             port: 5672
             saslPlugin: auth_service
             linkCapacity: ${ROUTER_LINK_CAPACITY}
+            authenticatePeer: yes
           }
 
           listener {
@@ -1203,6 +1215,15 @@ data:
             authenticatePeer: yes
             sslProfile: inter_router_tls
             saslMechanisms: EXTERNAL
+          }
+
+          listener {
+            host: 0.0.0.0
+            port: 8443
+            saslPlugin: auth_service
+            sslProfile: ssl_details
+            http: true
+            authenticatePeer: yes
           }
 
           sslProfile {
@@ -1217,6 +1238,7 @@ data:
             saslPlugin: auth_service
             sslProfile: ssl_details
             requireSsl: true
+            authenticatePeer: yes
           }
 
           sslProfile {
@@ -1313,8 +1335,8 @@ data:
                 value: "/etc/qpid-dispatch/config/qdrouterd.conf"
               - name: QDROUTERD_AUTO_MESH_DISCOVERY
                 value: "INFER"
-              - name: APPLICATION_NAME
-                value: "qdrouterd"
+              - name: QDROUTERD_AUTO_MESH_SERVICE_NAME
+                value: "qdrouterd-headless"
               image: docker.io/enmasseproject/router:latest
               livenessProbe:
                 initialDelaySeconds: 60
@@ -1986,8 +2008,8 @@ data:
                       value: "/etc/qpid-dispatch/config/qdrouterd.conf:/etc/qpid-dispatch/additional-config/colocated-topic.conf"
                     - name: QDROUTERD_AUTO_MESH_DISCOVERY
                       value: "INFER"
-                    - name: APPLICATION_NAME
-                      value: "qdrouterd"
+                    - name: QDROUTERD_AUTO_MESH_SERVICE_NAME
+                      value: "qdrouterd-headless"
                     image: docker.io/enmasseproject/router:latest
                     livenessProbe:
                       initialDelaySeconds: 60
